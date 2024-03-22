@@ -2835,7 +2835,12 @@ void XMLPrinter::CloseElement( bool compactMode )
     const char* name = _stack.Pop();
 
     if ( _elementJustOpened ) {
-        Write( "/>" );
+	if ( compactMode ) {
+            Write( "/>" );
+	}
+	else {
+	    Write(" />")
+	}
     }
     else {
         if ( _textDepth < 0 && !compactMode) {
